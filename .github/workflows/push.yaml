@@ -1,0 +1,16 @@
+name: Release
+on: [push]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build and Push Image
+        with:
+          image: keycloak-extensions
+          registry: ghcr.io
+          dockerfile: Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
