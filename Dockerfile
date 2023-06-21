@@ -6,4 +6,4 @@ RUN curl -LO https://github.com/svenstaro/keycloak-http-webhook-provider/release
 RUN curl -LO https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
 
 FROM scratch
-COPY --from=builder /
+COPY --from=builder / /
