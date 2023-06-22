@@ -6,7 +6,7 @@ RUN curl -LO https://github.com/svenstaro/keycloak-http-webhook-provider/release
 RUN curl -LO https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
 
 FROM alpine:latest
-COPY --from=builder /tmp /jars
-VOLUME /jars
+COPY --from=builder /tmp /opt/keycloak/providers
+VOLUME /opt/keycloak/providers
 CMD ["sleep", "infinity"]
 
