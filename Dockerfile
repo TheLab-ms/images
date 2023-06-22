@@ -4,7 +4,7 @@ RUN curl -LO https://github.com/TheLab-ms/thelab-keycloak-theme/releases/downloa
 RUN curl -LO https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
 
 FROM quay.io/phasetwo/phasetwo-keycloak:21.1.1.1686595996 as ptkc
-COPY /opt/keycloak/providers /providers
+RUN cp -r /opt/keycloak/providers /providers
 # just add this image so we can pull jars out of it
 
 FROM quay.io/keycloak/keycloak:21.1.1 AS kc
