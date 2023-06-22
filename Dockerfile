@@ -11,8 +11,8 @@ FROM quay.io/keycloak/keycloak:21.1.1 AS kc
 ENV KC_DB=postgres
 ENV KC_FEATURES=declarative-user-profile
 COPY --from=downloader /tmp /opt/keycloak/providers
-COPY --from=ptkc io.phasetwo.keycloak-keycloak-magic-link-0.13.jar /opt/keycloak/providers
-COPY --from=ptkc io.phasetwo.keycloak-keycloak-events-0.17.jar /opt/keycloak/providers
+COPY --from=ptkc /opt/keycloak/providers/io.phasetwo.keycloak-keycloak-magic-link-0.13.jar /opt/keycloak/providers
+COPY --from=ptkc /opt/keycloak/providers/io.phasetwo.keycloak-keycloak-events-0.17.jar /opt/keycloak/providers
 
 WORKDIR /opt/keycloak
 RUN /opt/keycloak/bin/kc.sh build
