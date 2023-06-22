@@ -7,5 +7,6 @@ RUN curl -LO https://github.com/wadahiro/keycloak-discord/releases/download/v0.4
 
 FROM alpine:latest
 COPY --from=builder /tmp /jars
+VOLUME /jars
 CMD ["sleep", "infinity"]
 
