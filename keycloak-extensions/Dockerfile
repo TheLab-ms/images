@@ -4,7 +4,7 @@ RUN curl -LO https://github.com/TheLab-ms/thelab-keycloak-theme/releases/downloa
 RUN curl -LO https://github.com/wadahiro/keycloak-discord/releases/download/v0.4.1/keycloak-discord-0.4.1.jar
 
 # just add this image so we can pull jars out of it
-FROM quay.io/phasetwo/phasetwo-keycloak:21.1.1.1686595996 as ptkc
+FROM quay.io/phasetwo/phasetwo-keycloak:22 as ptkc
 RUN ls /opt/keycloak/providers && cp -rv /opt/keycloak/providers/*magic-link* /tmp/magic-link.jar && cp -rv /opt/keycloak/providers/*events*.jar /tmp/events.jar
 
 FROM quay.io/keycloak/keycloak:22.0.5 AS kc
@@ -16,6 +16,6 @@ COPY --from=ptkc /tmp/magic-link.jar /opt/keycloak/providers
 WORKDIR /opt/keycloak
 RUN /opt/keycloak/bin/kc.sh build --health-enabled=true
 
-FROM quay.io/keycloak/keycloak:21.1.1
+FROM quay.io/keycloak/keycloak:22.0.5
 COPY --from=kc /opt/keycloak/ /opt/keycloak/
 ENTRYPOINT ["/opt/keycloak/bin/kc.sh"]
