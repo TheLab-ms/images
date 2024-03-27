@@ -1,0 +1,22 @@
+name: Release
+on:
+  push:
+    paths:
+      - "backupenv/**"
+
+jobs:
+  release:
+    name: Release Node Red
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        name: Check out code
+
+      - uses: mr-smithers-excellent/docker-build-push@v6
+        name: Build and Push Image
+        with:
+          image: backupenv
+          registry: ghcr.io
+          dockerfile: backupenv/Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
