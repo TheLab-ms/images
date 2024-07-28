@@ -9,7 +9,7 @@ RUN ls /opt/keycloak/providers && cp -rv /opt/keycloak/providers/*magic-link* /t
 
 FROM quay.io/keycloak/keycloak:25.0 AS kc
 ENV KC_DB=postgres
-ENV KC_FEATURES=declarative-user-profile,client-secret-rotation
+ENV KC_FEATURES=client-secret-rotation
 COPY --from=downloader /tmp /opt/keycloak/providers
 COPY --from=ptkc /tmp/events.jar /opt/keycloak/providers
 COPY --from=ptkc /tmp/magic-link.jar /opt/keycloak/providers
